@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+        integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href={% static 'css/style.css' %}>
+    <link rel="stylesheet" href={% static 'css/reset.css' %}>
+    <meta charset="UTF-8">
+    <title>테마별 추천</title>
+    <style>
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        img {
+            display: block;
+            margin: 0px auto;
+            width: 40%;
+        }
+
+        select {
+            width: 200px;
+            padding: .5em .5em;
+            border: 1px solid #999;
+            font-family: inherit;
+            background: url('arrow.jpg') no-repeat 95% 50%;
+            border-radius: 0px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        input[type=text] {
+            width: 190px;
+            height: 30px;
+            font-size: 20px;
+        }
+
+        body {
+            display: block;
+            background-size: 100% 200%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-comtain">
+        <nav>
+            <a href="/">HOME</a>
+            <a href="{% url 'ver1'%}">EXPERIENCE</a>
+            <a href="{% url 'ver3'%}">THEME</a>
+            {% if login_session%}
+            <a href="{% url 'user:logout' %}"><button class="logout-btn">LOGOUT</button></a>
+            {% else %}
+            <a href="{% url 'user:login' %}"><button class="login-btn">LOGIN</button></a>
+            <a href="{% url 'user:register' %}"><button class="join-btn">JOIN</button></a>
+            {% endif %}
+            <div id="indicator"></div>
+        </nav>
+    </div>
+    <br />
+    <div class="header">
+        <a class="header-a" onclick="location.href='/'">너와 나드리</a>
+    </div>
+    <div class="ver3-contain">
+        <form class="ver3-form" method="POST">
+            <div class="ver3-select">
+                {% comment %} <div class="ver3-destination">
+                    <span class="ver3-destination-span">목적지</span><br />
+                    <select class="ver3-destination-detail">
+                        <option class="optionbox" value='' selected>선택</option>
+                        <option class="optionbox" value='seoul'>서울</option>
+                        <option class="optionbox" value='gangwon'>강원도</option>
+                        <option class="optionbox" value='gyeonggi'>경기도</option>
+                        <option class="optionbox" value='chungcheongbuk'>충청북도</option>
+                        <option class="optionbox" value='chungcheongnam'>충청남도</option>
+                        <option class="optionbox" value='gyeongsangbuk'>경상북도</option>
+                        <option class="optionbox" value='gyeongsanganm'>경상남도</option>
+                        <option class="optionbox" value='jeollabuk'>전라북도</option>
+                        <option class="optionbox" value='Jeollanam'>전라남도</option>
+                    </select>
+                </div> {% endcomment %}
+                <div class="ver3-startday">
+                    <span class="ver3-startday-span">출발일 </span><br /><input type="date" class="ver3-startday-detail">
+                </div>
+                <div class="ver3-combackday">
+                    <span class="ver3-startday-span">복귀일 </span><br /><input type="date" class="ver3-startday-detail">
+                </div>
+                <div class="ver3-human">
+                    <span class="ver3-human-span">인원수 </span><br /><select class="ver3-human-detail">
+                        <option class="optionbox" value='' selected>선택</option>
+                        <option class="optionbox" value='one'>1</option>
+                        <option class="optionbox" value='two'>2</option>
+                        <option class="optionbox" value='tree'>3</option>
+                        <option class="optionbox" value='four'>4</option>
+                        <option class="optionbox" value='five'>5</option>
+                        <option class="optionbox" value='six'>6</option>
+                        <option class="optionbox" value='seven'>7~10</option>
+                        <option class="optionbox" value='eight'>11~15</option>
+                    </select>
+                </div>
+            </div>
+            {% csrf_token %}
+            <br />
+
+            <div class="ver3-tema"><span class="ver3-tema-span">#테마</span><br />
+                <div class="ver3-tema-contain">
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="food">음식</label>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="walk">산책</label>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="nature">자연경관</label>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="culture">전통</label>
+                    <br><br>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="date">데이트</label>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="sleep">휴식</label>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="drive">드라이브</label>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="night">야경</label>
+                    <br><br>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="fori">이국적</label>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="sns">SNS감성</label>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="family">가족</label>
+                    <label class="tema-label"><input onclick="CountChecked(this)" type="checkbox" name="detail"
+                            value="view">경치</label>
+                    <br><br>
+                    <input class="btn-submit" type="submit" value="Pick!" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id='contents' style="text-align:center;">
+        {% comment %} <img id="mg1" src="static/mg/ver3.png"> {% endcomment %}
+        <div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        var maxCount = 3;								// 카운트 최대값은 3
+        var count = 0;   								// 카운트, 0으로 초기화 설정
+
+        function CountChecked(field) { 					// field객체를 인자로 하는 CountChecked 함수 정의
+            if (field.checked) {						// 만약 field의 속성이 checked 라면(사용자가 클릭해서 체크상태가 된다면)
+                count += 1;								// count 1 증가
+            }
+            else {										// 아니라면 (field의 속성이 checked가 아니라면)
+                count -= 1;								// count 1 감소
+            }
+
+            if (count > maxCount) {						// 만약 count 값이 maxCount 값보다 큰 경우라면
+                alert("최대 3개까지만 선택가능합니다!");	// alert 창을 띄움
+                field.checked = false;						// (마지막 onclick한)field 객체의 checked를 false(checked가 아닌 상태)로 만든다.
+                count -= 1;									// 이때 올라갔던 카운트를 취소처리해야 하므로 count를 1 감소시킨다.
+            }
+        }
+    </script>
+    <footer class="footer" style="margin-top:56vh;">
+        <div class="footer-addr">
+          <div style="text-align:left">
+            <a class="footer-logo" onclick="location.href='/'">너와 나드리</a>
+          </div>
+          <h2>Contact</h2>
+          
+          <address>
+            <div style="text-align:left">
+                <a href="https://www.google.com/maps/place/%EC%A4%91%EB%B6%80%EB%8C%80%ED%95%99%EA%B5%90+%EA%B3%A0%EC%96%91%EC%BA%A0%ED%8D%BC%EC%8A%A4+%E4%B8%AD%E9%83%A8%E5%A4%A7%E5%AD%B8%E6%A0%A1+Joongbu+University/data=!4m5!3m4!1s0x357c943e1caccd2b:0x56404200ca89df47!8m2!3d37.713203!4d126.8900751">
+                    중부대학교 창의캠퍼스. 세종관 828호
+                </a><br>
+            </div>
+                
+            <a class="footer-btn">문의하기</a>
+          </address>
+        </div>
+        
+        <ul class="footer-p">
+          <li class="p-item">
+            <h2 class="p-title">너와 나드리</h2>
+      
+            <ul class="p-ul">
+              <li>
+                <p>김병찬</p>
+              </li>
+      
+              <li>
+                <p>정욱채</p>
+              </li>
+                  
+              <li>
+                <p>한정우</p>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="p-item">
+            <h2 class="p-title">사용기술</h2>
+            
+            <ul class="p-ul">
+              <li>
+                <p>경험기반 추천받기</p>
+              </li>
+              
+              <li>
+                <p>테마기반 추천받기</p>
+              </li>
+              
+              <li>
+                <p>세션기반 추천받기</p>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="p-item">
+            <h2 class="p-title">지도교수</h2>
+            
+            <ul class="p-ul">
+              <li>
+                <p>김송강 교수</p>
+              </li>
+              
+              <li>
+                <p>황호진 교수</p>
+              </li>
+              
+            </ul>
+          </li>
+        </ul>
+        
+        <div class="footer-sub">
+          <div class="sub-name">
+            <p>&copy; 2022 정보통신학과. 졸업작품 프로젝트.</p>
+          </div>
+        </div>
+    </footer>
+</body>
+
+</html>
