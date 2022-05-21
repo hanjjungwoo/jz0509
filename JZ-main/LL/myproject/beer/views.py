@@ -3720,29 +3720,29 @@ def ver2_session(request):
 def ver3(request):
     df_cluster = pd.read_csv('result.csv', encoding='utf-8', index_col=0)
 
-    cst0_list = df_cluster.loc[df_cluster['Cluster'] == 0, 'place'].tolist()
+    cst0_list = df_cluster.loc[df_cluster['Cluster'] == 0, 'locate'].tolist()
 
-    cst1_list = df_cluster.loc[df_cluster['Cluster'] == 1, 'place'].tolist()
+    cst1_list = df_cluster.loc[df_cluster['Cluster'] == 1, 'locate'].tolist()
 
-    cst2_list = df_cluster.loc[df_cluster['Cluster'] == 2, 'place'].tolist()
+    cst2_list = df_cluster.loc[df_cluster['Cluster'] == 2, 'locate'].tolist()
 
-    cst3_list = df_cluster.loc[df_cluster['Cluster'] == 3, 'place'].tolist()
+    cst3_list = df_cluster.loc[df_cluster['Cluster'] == 3, 'locate'].tolist()
 
-    cst4_list = df_cluster.loc[df_cluster['Cluster'] == 4, 'place'].tolist()
+    cst4_list = df_cluster.loc[df_cluster['Cluster'] == 4, 'locate'].tolist()
 
-    cst5_list = df_cluster.loc[df_cluster['Cluster'] == 5, 'place'].tolist()
+    cst5_list = df_cluster.loc[df_cluster['Cluster'] == 5, 'locate'].tolist()
 
-    cst6_list = df_cluster.loc[df_cluster['Cluster'] == 6, 'place'].tolist()
+    cst6_list = df_cluster.loc[df_cluster['Cluster'] == 6, 'locate'].tolist()
 
-    cst7_list = df_cluster.loc[df_cluster['Cluster'] == 7, 'place'].tolist()
+    cst7_list = df_cluster.loc[df_cluster['Cluster'] == 7, 'locate'].tolist()
 
-    cst8_list = df_cluster.loc[df_cluster['Cluster'] == 8, 'place'].tolist()
+    cst8_list = df_cluster.loc[df_cluster['Cluster'] == 8, 'locate'].tolist()
 
-    cst9_list = df_cluster.loc[df_cluster['Cluster'] == 9, 'place'].tolist()
+    cst9_list = df_cluster.loc[df_cluster['Cluster'] == 9, 'locate'].tolist()
 
-    cst10_list = df_cluster.loc[df_cluster['Cluster'] == 10, 'place'].tolist()
+    cst10_list = df_cluster.loc[df_cluster['Cluster'] == 10, 'locate'].tolist()
 
-    cst11_list = df_cluster.loc[df_cluster['Cluster'] == 11, 'place'].tolist()
+    cst11_list = df_cluster.loc[df_cluster['Cluster'] == 11, 'locate'].tolist()
 
     # ver3에서 로그인 세션 유지
     context = {}

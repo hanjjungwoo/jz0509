@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'rest_framework',
     'corsheaders',
-    'embed_video',
+    'embed_video',  
 ]
 
 MIDDLEWARE = [

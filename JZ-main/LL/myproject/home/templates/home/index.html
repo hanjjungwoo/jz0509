@@ -52,6 +52,12 @@
         <a class="recommendation-ver1" href="{% url 'beer:ver1'%}">1. 경험으로 추천받기</a>
         <a class="recommendation-ver3" href="{% url 'beer:ver3'%}">2. 테마로 추천받기</a><br><br>
     </div>
+    <div class="satisfiction-contain">
+        <form name="satisfiction" id="satisfiction" method="post">
+            <p>어디를 방문했나요?</p><input type="text" name="여행지">
+
+        </form>
+    </div>
     <footer class="footer">
         <div class="footer-addr">
             <div style="text-align:left">
